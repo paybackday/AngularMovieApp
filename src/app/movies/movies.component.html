@@ -1,2 +1,14 @@
-<p>movies works!</p>
-<app-movie></app-movie>
+<div class="card mb-3" *ngFor="let item of movies">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="assets/img/{{item.imageUrl}}" class="img-fluid rounded-start"> <!--I wrote this img fluid because if pictures bigger than column, picture fit inside place that it has been. Rounded-start is the rounding the left side of the picture.-->
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                <h2 class="card-title">{{item.title}}</h2>
+                <p class="card-text">{{item.description}}</p>
+                <button class="btn-sm btn-outline-primary">Details</button>
+            </div>
+        </div>
+    </div>
+</div>
