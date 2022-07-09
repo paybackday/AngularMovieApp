@@ -12,4 +12,10 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  categories=[
+    {id:1,categoryName:"Adventure"},
+    {id:2,categoryName:"Romantic"},
+    {id:3,categoryName:"Science-Fiction"},
+    {id:4,categoryName:"Dram"}
+  ]
 }
