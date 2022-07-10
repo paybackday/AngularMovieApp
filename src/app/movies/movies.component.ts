@@ -9,6 +9,7 @@ import { MovieRepository } from '../models/movieRepository';
 })
 export class MoviesComponent implements OnInit {
 
+  title:string="Movie List";
   movies:Movie[];
 
   movieRepository:MovieRepository;

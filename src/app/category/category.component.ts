@@ -16,7 +16,7 @@ export class CategoryComponent implements OnInit {
     this.categoryRepository=new CategoryRepository();
     this.categories=this.categoryRepository.getCategories();
   }
-
+  
   ngOnInit(): void {
   }
 }

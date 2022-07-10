@@ -1,4 +1,21 @@
-<div class="card mb-3" *ngFor="let item of movies">
+<div *ngIf="movies.length>0; else no_movies">
+    <h1>{{title}}</h1>
+    <div class="alert alert-warning" *ngIf="movies.length>0">
+        {{movies.length}} movie found.
+    </div>
+    <ng-template [ngTemplateOutlet]="moviesList1"></ng-template> <!--If we want to recall the template we have specified below, we just enough to write [ngTemplateOutlet="moviesList1"] -->
+    <ng-template [ngTemplateOutlet]="moviesList2" [ngTemplateOutletContext]="{movies:movieRepository.getMovies()}"></ng-template> <!--iF we want to send data from outside then we have to write [ngTemplateOutletContext]="{<list or to be sent argument>}"-->
+</div>
+
+<ng-template #no_movies>
+    <div class="alert alert-warning">
+        Movie not found.
+    </div>
+</ng-template>
+
+
+<ng-template #moviesList1>
+    <div class="card mb-3" *ngFor="let item of movies">
     <div class="row">
         <div class="col-md-3">
             <img src="assets/img/{{item.imageUrl}}" class="img-fluid rounded-start"> <!--I wrote this img fluid because if pictures bigger than column, picture fit inside place that it has been. Rounded-start is the rounding the left side of the picture.-->
@@ -11,4 +28,24 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+</ng-template> <!--Let's we say we have a template in here-->
+
+
+<ng-template #moviesList2 let-popularMovies="movies">
+    <h2>Popular Movies</h2>
+    <div class="card mb-3" *ngFor="let item of popularMovies">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="assets/img/{{item.imageUrl}}" class="img-fluid rounded-start"> <!--I wrote this img fluid because if pictures bigger than column, picture fit inside place that it has been. Rounded-start is the rounding the left side of the picture.-->
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                <h2 class="card-title">{{item.title}}</h2>
+                <p class="card-text">{{item.description}}</p>
+                <button class="btn-sm btn-outline-primary">Details</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</ng-template> <!--Let's we say we have a template in here-->
