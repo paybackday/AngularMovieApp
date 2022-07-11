@@ -12,7 +12,9 @@ export class MoviesComponent implements OnInit {
   title:string="Movie List";
   movies:Movie[];
   popularMovies:Movie[];
-  today:Date=new Date("12/02/1998");
+  // today:Date=new Date("12/02/1998");
+
+  filterText:string="";
 
   movieRepository:MovieRepository;
 
