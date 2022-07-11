@@ -31,6 +31,7 @@
                 <h2 class="card-title">{{item.title}}</h2>
                 <p class="card-text">{{item.description | summary : 20}}</p>
                 <button class="btn-sm btn-outline-primary">Details</button>
+                <button (click)="addToList($event,item)" style="margin-left:10px;" class="btn-sm btn-primary">Add to Favorite List</button>
             </div>
         </div>
     </div>
