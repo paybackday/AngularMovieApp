@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movieRepository';
 
+declare let alertify:any;
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -37,12 +39,15 @@ export class MoviesComponent implements OnInit {
       $event.target.classList.remove("btn-primary");
       $event.target.classList.add("btn-danger");
       $event.target.innerText="Remove from Favorite List";
+      alertify.success(movie.title+' added to list successfully');
     }
 
     else if ($event.target.classList.contains("btn-danger")) {
       $event.target.classList.remove("btn-danger");
       $event.target.classList.add("btn-primary");
       $event.target.innerText="Add to Favorite List";
+      alertify.error(movie.title+' removed from list successfully');
+      
     }
   }
   
