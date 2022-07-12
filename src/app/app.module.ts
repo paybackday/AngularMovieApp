@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SummaryPipe } from './pipes/summaryPipe';
 import { FormsModule } from '@angular/forms';
 import { MovieFilterPipePipe } from './pipes/movie-filter-pipe.pipe';
+import { AlertifyService } from './services/alertifyService';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { MovieFilterPipePipe } from './pipes/movie-filter-pipe.pipe';
     BrowserModule,
     FormsModule //We have to add FormsModule to can use ngModel two-way binding parameter.
   ],
-  providers: [],
+  providers: [
+    AlertifyService
+  ], // After we create every service class, either we'll add in here class name or we'll write into Injectable({providedIn:'root'}) at start of the class.
   bootstrap: [AppComponent]
 })
 export class AppModule { }

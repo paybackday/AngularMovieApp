@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movieRepository';
+import { AlertifyService } from '../services/alertifyService';
 
-declare let alertify:any;
+// declare let alertify:any; Now, we're using alertifyService, here you can see definitions on constructor.
 
 @Component({
   selector: 'app-movies',
@@ -20,7 +21,7 @@ export class MoviesComponent implements OnInit {
 
   movieRepository:MovieRepository;
 
-  constructor() { 
+  constructor(private alertify:AlertifyService) { 
 
     this.movieRepository=new MovieRepository();
     this.movies= this.movieRepository.getMovies();
@@ -39,14 +40,14 @@ export class MoviesComponent implements OnInit {
       $event.target.classList.remove("btn-primary");
       $event.target.classList.add("btn-danger");
       $event.target.innerText="Remove from Favorite List";
-      alertify.success(movie.title+' added to list successfully');
+      this.alertify.success(movie.title+' added to list successfully');
     }
 
     else if ($event.target.classList.contains("btn-danger")) {
       $event.target.classList.remove("btn-danger");
       $event.target.classList.add("btn-primary");
       $event.target.innerText="Add to Favorite List";
-      alertify.error(movie.title+' removed from list successfully');
+      this.alertify.error(movie.title+' removed from list successfully');
       
     }
   }
