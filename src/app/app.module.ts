@@ -12,6 +12,7 @@ import { SummaryPipe } from './pipes/summaryPipe';
 import { FormsModule } from '@angular/forms';
 import { MovieFilterPipePipe } from './pipes/movie-filter-pipe.pipe';
 import { AlertifyService } from './services/alertifyService';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AlertifyService } from './services/alertifyService';
   ],
   imports: [
     BrowserModule,
-    FormsModule //We have to add FormsModule to can use ngModel two-way binding parameter.
+    FormsModule, //We have to add FormsModule to can use ngModel two-way binding parameter.
+    HttpClientModule // When we first add, it cannot import this module it needs to define manually
   ],
   providers: [
     AlertifyService

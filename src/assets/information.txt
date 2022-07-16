@@ -1,0 +1,13 @@
+Due to we have not oppurtunity to write backend app for this app, we used to Json Server on our front end program.
+While we using json server due to we write json-server --watch <file_name> it is gonna be always watching to destination file.
+To create get request to json server or backend side we have to add HttpClientModule in app.module.ts
+We added HttpClientModule in app.module.ts but to using we have to inject this wherever we want
+ngOnInit means is when the page is loaded. We can use http request in this method.
+
+In this app, we can take some information from json place holder test rest api. To do that we just need to go website of the jsonplaceholder and take the some endpoint adress. We can use this endpoints on our component .ts file.
+
+To can make a request, firstly we have to use http object that come from defined constructor, after that we should use get method of this object. We need to subscribe endpoint. 
+Ex: 
+this.http.get(address).subscribe(data=>{console.log(data)};) 
+or
+this.http.get<GenericTypeThatWillConvert>(address).subscribe(data=>{this.varName=data};)

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movieRepository';
@@ -13,22 +14,26 @@ import { AlertifyService } from '../services/alertifyService';
 export class MoviesComponent implements OnInit {
 
   title:string="Movie List";
-  movies:Movie[];
-  popularMovies:Movie[];
+  movies:Movie[]=[];
+  popularMovies:Movie[]=[];
   favoriteList:Movie[]=[];
 
   filterText:string="";
 
   movieRepository:MovieRepository;
 
-  constructor(private alertify:AlertifyService) { 
+  constructor(private alertify:AlertifyService, private http:HttpClient) { // To use HttpClient we injected in here.
 
     this.movieRepository=new MovieRepository();
-    this.movies= this.movieRepository.getMovies();
-    this.popularMovies=this.movieRepository.getPopularMovies();
+    // this.movies= this.movieRepository.getMovies();
+    // this.popularMovies=this.movieRepository.getPopularMovies();
   }
 
   ngOnInit(): void {
+    this.http.get<Movie[]>("http://localhost:3000/movies").subscribe(data=>{this.movies=data;})
+
+    //Test
+    this.http.get("https://jsonplaceholder.typicode.com/posts").subscribe(x=>{console.log(x);})
   }
 
   addToList($event:any,movie:Movie){
