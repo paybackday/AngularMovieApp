@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MovieFilterPipePipe } from './pipes/movie-filter-pipe.pipe';
 import { AlertifyService } from './services/alertifyService';
 import {HttpClientModule} from '@angular/common/http'
+import { MovieService } from './services/movieService';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {HttpClientModule} from '@angular/common/http'
     HttpClientModule // When we first add, it cannot import this module it needs to define manually
   ],
   providers: [
-    AlertifyService
+    AlertifyService,
+    MovieService
   ], // After we create every service class, either we'll add in here class name or we'll write into Injectable({providedIn:'root'}) at start of the class.
   bootstrap: [AppComponent]
 })

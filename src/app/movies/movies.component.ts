@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movieRepository';
 import { AlertifyService } from '../services/alertifyService';
+import { MovieService } from '../services/movieService';
 
 // declare let alertify:any; Now, we're using alertifyService, here you can see definitions on constructor.
 
@@ -22,7 +23,7 @@ export class MoviesComponent implements OnInit {
 
   movieRepository:MovieRepository;
 
-  constructor(private alertify:AlertifyService, private http:HttpClient) { // To use HttpClient we injected in here.
+  constructor(private alertify:AlertifyService, private movieService:MovieService) { // To use HttpClient we injected in here.
 
     this.movieRepository=new MovieRepository();
     // this.movies= this.movieRepository.getMovies();
@@ -30,10 +31,7 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<Movie[]>("http://localhost:3000/movies").subscribe(data=>{this.movies=data;})
-
-    //Test
-    this.http.get("https://jsonplaceholder.typicode.com/posts").subscribe(x=>{console.log(x);})
+    this.movieService.getMovies().subscribe(data=>{this.movies=data;})
   }
 
   addToList($event:any,movie:Movie){
