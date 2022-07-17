@@ -14,6 +14,7 @@ import { MovieFilterPipePipe } from './pipes/movie-filter-pipe.pipe';
 import { AlertifyService } from './services/alertifyService';
 import {HttpClientModule} from '@angular/common/http'
 import { MovieService } from './services/movieService';
+import { CategoryService } from './services/categoryService';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MovieService } from './services/movieService';
   ],
   providers: [
     AlertifyService,
-    MovieService
+    MovieService,
+    CategoryService
   ], // After we create every service class, either we'll add in here class name or we'll write into Injectable({providedIn:'root'}) at start of the class.
   bootstrap: [AppComponent]
 })
