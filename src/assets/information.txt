@@ -11,3 +11,12 @@ Ex:
 this.http.get(address).subscribe(data=>{console.log(data)};) 
 or
 this.http.get<GenericTypeThatWillConvert>(address).subscribe(data=>{this.varName=data};)
+
+---Error Handling---
+
+Like we can make an error message on the component side, either we can create it on the service side.
+When we want to create error handling mechanism, we can use pipe method before subscribing any endpoints.
+For example you can inspect on movie component.ts
+
+In this way (pipe in tap method) we can interve before an error occurred and we can personalize error messages.
+

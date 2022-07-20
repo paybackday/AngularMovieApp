@@ -18,6 +18,7 @@ export class MoviesComponent implements OnInit {
   movies:Movie[]=[];
   popularMovies:Movie[]=[];
   favoriteList:Movie[]=[];
+  error:any;
 
   filterText:string="";
 
@@ -31,7 +32,9 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe(data=>{this.movies=data;})
+    this.movieService.getMovies().subscribe(data=>{this.movies=data;}//,
+      ,error=>this.error=error
+    )
   }
 
   addToList($event:any,movie:Movie){

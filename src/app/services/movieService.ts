@@ -1,17 +1,77 @@
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { HttpClient, HttpClientModule, HttpErrorResponse } from "@angular/common/http";
+import { ErrorHandler, Injectable } from "@angular/core";
+import { catchError, Observable, tap, throwError } from "rxjs";
 import { Movie } from "../models/movie";
 
 @Injectable()
 export class MovieService{
 private getMoviesUrl="http://localhost:3000/movies";
 
-constructor(private http:HttpClient) {
-}
+constructor(private http:HttpClient) {}
 
 getMovies():Observable<Movie[]>{
-
-    return this.http.get<Movie[]>(this.getMoviesUrl);
+    return this.http.get<Movie[]>(this.getMoviesUrl)
+    .pipe(
+        tap(x=>console.log(x)),
+        catchError(this.handleError)
+    );
 }
+
+
+private handleError(incomingError:HttpErrorResponse){
+    if (incomingError.error instanceof ErrorEvent) {
+        console.log("Error:"+ incomingError.message);
+        //If error source is client or network, this if block will run.
+    }
+    else{
+        //If error source is server , this personalized switch case block will run.
+        switch (incomingError.status) {
+            case 404:
+                console.log("Endpoint Not Found")
+                break;
+            case 403:
+                console.log("Access Denied");
+                break;
+                case 500:
+                    console.log("Interval Server Error");
+                    break;
+            default:
+                console.log("Unexpected Error");
+                break;
+        }
+    }
+    return throwError("We interved when the error occured.")
+}
+
+// private handleError(incomingError : HttpErrorResponse);
+// {
+//     if (incomingError.error instanceof ErrorEvent) {
+//         //error of client or network
+//         console.log("error"+ incomingError.message);
+        
+//     }
+//     else{
+//         switch (incomingError.status) {
+//             case 404:
+//                 console.log("Not Found");
+//                 break;
+//             case 403:
+//                 console.log("Access Denied");
+//                 break;
+//             case 500:
+//                 console.log("Interval Server");
+//                 break;
+//             default:
+//                 console.log("Unexpected error");
+//                 break;
+//         }
+//     }
+//     return throwError("Unexpected");
+    
+
+
+
+
+// }
+
 }
