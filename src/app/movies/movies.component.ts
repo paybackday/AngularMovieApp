@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movieRepository';
 import { AlertifyService } from '../services/alertifyService';
@@ -24,17 +25,31 @@ export class MoviesComponent implements OnInit {
 
   movieRepository:MovieRepository;
 
-  constructor(private alertify:AlertifyService, private movieService:MovieService) { // To use HttpClient we injected in here.
-
-    this.movieRepository=new MovieRepository();
+  constructor(private alertify:AlertifyService, private movieService:MovieService,private activatedRoute:ActivatedRoute) { // To use HttpClient we injected in here.
+    //For old versions...
+    // this.movieRepository=new MovieRepository();
     // this.movies= this.movieRepository.getMovies();
     // this.popularMovies=this.movieRepository.getPopularMovies();
   }
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe(data=>{this.movies=data;}//,
+
+    //We have subscribed router parameters...
+    this.activatedRoute.params.subscribe(params=>{
+
+      //Now we can use categoryId that we take from url.
+      //Just we need to write params["<definedParameterNameOnRouterModule>"]
+      this.movieService.getMovies(params["categoryId"]).subscribe(data=>{this.movies=data;}//,
       ,error=>this.error=error
-    )
+    );
+
+
+    });
+
+
+
+
+    
   }
 
   addToList($event:any,movie:Movie){

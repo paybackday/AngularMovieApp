@@ -9,8 +9,16 @@ private getMoviesUrl="http://localhost:3000/movies";
 
 constructor(private http:HttpClient) {}
 
-getMovies():Observable<Movie[]>{
-    return this.http.get<Movie[]>(this.getMoviesUrl)
+getMovies(categoryId:number):Observable<Movie[]>{
+
+    //We can take a specified movie list when we send request to movies endpoint with category parameter at the JsonServer. 
+    let newUrl=this.getMoviesUrl;
+
+    if (categoryId) {
+        newUrl+='?categoryId='+categoryId;
+    }
+    console.log(newUrl);
+    return this.http.get<Movie[]>(newUrl)
     .pipe(
         tap(x=>console.log(x)),
         catchError(this.handleError)
