@@ -20,3 +20,10 @@ For example you can inspect on movie component.ts
 
 In this way (pipe in tap method) we can interve before an error occurred and we can personalize error messages.
 
+
+--ROUTING--
+Normally, we are seeing page when we go to main page of program. We should add routing struct into app because if we want to go inside any page or any side from main page it must have related URL.
+
+When we want to add routing mechanism, we can add as a module with using CLI. We should write this command,
+ng generate module app-routing --flat --module=app
+

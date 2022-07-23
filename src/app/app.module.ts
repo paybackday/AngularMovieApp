@@ -15,6 +15,7 @@ import { AlertifyService } from './services/alertifyService';
 import {HttpClientModule} from '@angular/common/http'
 import { MovieService } from './services/movieService';
 import { CategoryService } from './services/categoryService';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { CategoryService } from './services/categoryService';
   imports: [
     BrowserModule,
     FormsModule, //We have to add FormsModule to can use ngModel two-way binding parameter.
-    HttpClientModule // When we first add, it cannot import this module it needs to define manually
+    HttpClientModule, AppRoutingModule // When we first add, it cannot import this module it needs to define manually
   ],
   providers: [
     AlertifyService,
