@@ -25,6 +25,20 @@ getMovies(categoryId:number):Observable<Movie[]>{
     );
 }
 
+getMovieById(movieId:number):Observable<Movie>{
+
+    let newUrl=this.getMoviesUrl;
+
+    if (movieId) {
+        newUrl+="/"+movieId;
+    }
+
+    return this.http.get<Movie>(newUrl).pipe(
+        tap(x=>console.log(x)),
+        catchError(this.handleError)
+    );
+}
+
 
 private handleError(incomingError:HttpErrorResponse){
     if (incomingError.error instanceof ErrorEvent) {
