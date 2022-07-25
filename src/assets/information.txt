@@ -27,3 +27,10 @@ Normally, we are seeing page when we go to main page of program. We should add r
 When we want to add routing mechanism, we can add as a module with using CLI. We should write this command,
 ng generate module app-routing --flat --module=app
 
+
+
+--VALIDATION--
+
+When we want to create on our movieCreate form, we could create movie with empty inputs. To prevent this we have to use validation.
+
+
