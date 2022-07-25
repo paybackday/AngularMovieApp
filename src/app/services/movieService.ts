@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { ErrorHandler, Injectable } from "@angular/core";
 import { catchError, Observable, tap, throwError } from "rxjs";
 import { Movie } from "../models/movie";
@@ -37,6 +37,21 @@ getMovieById(movieId:number):Observable<Movie>{
         tap(x=>console.log(x)),
         catchError(this.handleError)
     );
+}
+
+createMovie(movie:Movie):Observable<Movie>{ //Return the inserted object.
+const httpOptions={
+    headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':'Token'
+    })
+}
+// return this.http.post<Movie>(this.getMoviesUrl,movie,httpOptions) //If we send headers etc. we can send httpOptions as third parameter
+
+return this.http.post<Movie>(this.getMoviesUrl,movie).pipe(
+    tap(x=>console.log(x)),
+    catchError(this.handleError)
+); //We're gonna go same address but we're gonna send data with post request.
 }
 
 

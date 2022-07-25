@@ -1,0 +1,26 @@
+<form>
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input name="title" [(ngModel)]="bindMovie.title" type="text" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description" [(ngModel)]="bindMovie.description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="imageUrl" class="form-label">Image Url</label>
+        <input name="imageUrl" [(ngModel)]="bindMovie.imageUrl" type="text" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="categoryId" class="form-label">Category</label>
+        <select name="categoryId" [(ngModel)]="bindMovie.categoryId" class="form-select">
+            <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="categoryId" class="form-label">Popular Movie ?: &nbsp;</label>
+        <input name="isPopular" [(ngModel)]="bindMovie.isPopular" type="checkbox" class=" ms-10">
+    </div>
+
+    <button class="btn btn-primary"(click)="createMovie()">Create</button>
+</form>

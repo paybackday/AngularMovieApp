@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { MovieService } from './services/movieService';
 import { CategoryService } from './services/categoryService';
 import { AppRoutingModule } from './app-routing.module';
+import { MovieCreateComponent } from './movie-create/movie-create.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
     MovieDetailsComponent,
     FooterComponent,
     SummaryPipe,
-    MovieFilterPipePipe
+    MovieFilterPipePipe,
+    MovieCreateComponent
   ],
   imports: [
     BrowserModule,
