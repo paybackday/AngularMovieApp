@@ -1,7 +1,8 @@
-<form>
+<form (ngSubmit)="createMovie()">
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input name="title" [(ngModel)]="bindMovie.title" type="text" class="form-control">
+        <input name="title" #title="ngModel" required="true" [(ngModel)]="bindMovie.title" type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="title.invalid && title.touched"> This field is required.</div>
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
@@ -21,6 +22,5 @@
         <label for="categoryId" class="form-label">Popular Movie ?: &nbsp;</label>
         <input name="isPopular" [(ngModel)]="bindMovie.isPopular" type="checkbox" class=" ms-10">
     </div>
-
-    <button class="btn btn-primary"(click)="createMovie()">Create</button>
+    <button type="submit" class="btn btn-primary">Create</button>
 </form>

@@ -5,6 +5,7 @@ import { Movie } from '../models/movie';
 import { CategoryService } from '../services/categoryService';
 import { MovieService } from '../services/movieService';
 import{AlertifyService} from '../services/alertifyService';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-create',
@@ -34,6 +35,10 @@ export class MovieCreateComponent implements OnInit {
 
   createMovie(){
     
+    ////We're binding to bindModel object like this way. We can send ngForm from html side. Purpose of we do this is we can provide more complex validations on '.ts' side.
+    
+    
+
     if (this.bindMovie.title==="" || this.bindMovie.description=="" ||  this.bindMovie.imageUrl=="") {
       this.alertifyService.error("Please fill the blanks before create a movie.");
       return;
@@ -45,6 +50,7 @@ export class MovieCreateComponent implements OnInit {
     }
     this.movieService.createMovie(this.bindMovie).subscribe(data=>{console.log(data);});
     this.router.navigate(['/movies']);
+
   }
 
 }

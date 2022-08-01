@@ -1,0 +1,7 @@
+.form-control.ng-touched.ng-invalid /*This means is touched to any element of the form and at the same time form is invalid.*/
+{ 
+    border-left:5px solid #a94442;
+}
+.form-control.ng-dirty.ng-valid{ /*This means is html input was filled by user and form is valid. */
+    border-left:5px solid #42a948;
+}

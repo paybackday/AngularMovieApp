@@ -33,4 +33,17 @@ ng generate module app-routing --flat --module=app
 
 When we want to create on our movieCreate form, we could create movie with empty inputs. To prevent this we have to use validation.
 
+//Template-Driven validation
+We're binding to bindModel object like this way. We can send ngForm from html side. Purpose of we do this is we can provide more complex validations on '.ts' side.
 
+We can arrange some form input class when we send form with ngForm on parameter on method but first of all we must know some class about ngForm.
+
+For Example:
+
+ngPristine:This property will stay true if don't enter any value to form input.
+ngDirty: It'll check the whether form element filled or not. This element will be changed true if the form element is filled before.
+ngTouched:It'll check the whether form element touched or not. This property will be changed true if the user touched to element before.
+ngUntouched:This property is reverse of the ngTouched. It'll be stay true if form kept originally.
+
+
+After we know all about this we can create a css file about these classes. First of all, we need to create css file into assets file. We can give any name to this file but it would be better if we give forms.css.
